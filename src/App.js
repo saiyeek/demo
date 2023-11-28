@@ -1,9 +1,9 @@
-import UsersList from './components/UsersList';
+import AdvertisersList from "./components/AdvertisersList";
 
 function App() {
   return (
     <div className="container mx-auto">
-      <UsersList />
+      <AdvertisersList />
     </div>
   );
 }

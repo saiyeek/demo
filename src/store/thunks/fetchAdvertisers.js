@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const fetchUsers = createAsyncThunk('users/fetch', async () => {
-  const response = await axios.get('http://localhost:3005/users');
+const fetchAdvertisers = createAsyncThunk("advertisers/fetch", async () => {
+  const response = await axios.get("http://localhost:3005/advertisers");
 
   // DEV ONLY!!!
   await pause(1000);
@@ -17,4 +17,4 @@ const pause = (duration) => {
   });
 };
 
-export { fetchUsers };
+export { fetchAdvertisers };
