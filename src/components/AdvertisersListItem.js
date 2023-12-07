@@ -1,23 +1,27 @@
 import { GoTrashcan } from "react-icons/go";
 import Button from "./Button";
-import { removeAdvertiser } from "../store";
-import { useThunk } from "../hooks/use-thunk";
+import { useRemoveAdvertiserMutation } from "../store";
 import ExpandablePanel from "./ExpandablePanel";
 import InsertionOrdersList from "./InsertionOrdersList";
 
 function AdvertisersListItem({ advertiser }) {
-  const [doRemoveAdvertiser, isLoading, error] = useThunk(removeAdvertiser);
+  const [removeAdvertiser, results] = useRemoveAdvertiserMutation();
 
   const handleClick = () => {
-    doRemoveAdvertiser(advertiser);
+    console.log({ advertiser });
+    removeAdvertiser(advertiser);
   };
 
   const header = (
     <>
-      <Button className="mr-3" loading={isLoading} onClick={handleClick}>
+      <Button
+        className="mr-3"
+        loading={results.isLoading}
+        onClick={handleClick}
+      >
         <GoTrashcan />
       </Button>
-      {error && <div>Error deleting advertiser.</div>}
+      {results.error && <div>Error deleting advertiser.</div>}
       {advertiser.name}
     </>
   );

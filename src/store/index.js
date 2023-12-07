@@ -1,27 +1,31 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query';
-import { advertisersReducer } from "./slices/advertisersSlice";
+import { setupListeners } from "@reduxjs/toolkit/query";
 import { insertionOrdersApi } from "./apis/insertionOrdersApi";
 import { lineItemsApi } from "./apis/lineItemsApi";
+import { advertisersApi } from "./apis/advertisersApi";
 
 export const store = configureStore({
   reducer: {
-    advertisers: advertisersReducer,
+    [advertisersApi.reducerPath]: advertisersApi.reducer,
     [insertionOrdersApi.reducerPath]: insertionOrdersApi.reducer,
     [lineItemsApi.reducerPath]: lineItemsApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware()
       .concat(insertionOrdersApi.middleware)
-      .concat(lineItemsApi.middleware);
+      .concat(lineItemsApi.middleware)
+      .concat(advertisersApi.middleware);
   },
 });
 
 setupListeners(store.dispatch);
 
-export * from "./thunks/fetchAdvertisers";
-export * from "./thunks/addAdvertiser";
-export * from "./thunks/removeAdvertiser";
+export {
+  useFetchAdvertisersQuery,
+  useAddAdvertiserMutation,
+  useRemoveAdvertiserMutation,
+} from "./apis/advertisersApi";
+
 export {
   useFetchInsertionOrdersQuery,
   useAddInsertionOrderMutation,

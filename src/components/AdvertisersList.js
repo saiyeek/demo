@@ -1,26 +1,19 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { fetchAdvertisers, addAdvertiser } from "../store";
+import { useFetchAdvertisersQuery, useAddAdvertiserMutation } from "../store";
 import Button from "./Button";
 import Skeleton from "./Skeleton";
-import { useThunk } from "../hooks/use-thunk";
 import AdvertisersListItem from "./AdvertisersListItem";
 
 function AdvertisersList() {
-  const [doFetchAdvertisers, isLoadingAdvertisers, loadingAdvertisersError] =
-    useThunk(fetchAdvertisers);
-  const [doCreateUser, isCreatingUser, creatingUserError] =
-    useThunk(addAdvertiser);
-  const { data } = useSelector((state) => {
-    return state.advertisers;
-  });
+  const [addAdvertiser, results] = useAddAdvertiserMutation();
 
-  useEffect(() => {
-    doFetchAdvertisers();
-  }, [doFetchAdvertisers]);
+  const {
+    data,
+    isLoading: isLoadingAdvertisers,
+    error: loadingAdvertisersError,
+  } = useFetchAdvertisersQuery();
 
   const handleUserAdd = () => {
-    doCreateUser();
+    addAdvertiser();
   };
 
   let content;
@@ -40,10 +33,10 @@ function AdvertisersList() {
     <div>
       <div className="flex flex-row justify-between items-center m-3">
         <h1 className="m-2 text-xl">Advertisers</h1>
-        <Button loading={isCreatingUser} onClick={handleUserAdd}>
+        <Button loading={results.isLoading} onClick={handleUserAdd}>
           + Add Advertiser
         </Button>
-        {creatingUserError && "Error creating advertiser..."}
+        {results.error && "Error creating advertiser..."}
       </div>
       {content}
     </div>

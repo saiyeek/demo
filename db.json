@@ -1,5 +1,62 @@
 {
+<<<<<<< Updated upstream
   "advertisers": [],
+=======
+  "advertisers": [
+    {
+      "name": "Luxurious Soft Sausages",
+      "id": 6
+    },
+    {
+      "name": "Practical Bronze Pants",
+      "id": 7
+    },
+    {
+      "name": "Fantastic Rubber Chips",
+      "id": 8
+    },
+    {
+      "name": "Refined Cotton Pizza",
+      "id": 9
+    },
+    {
+      "name": "Tasty Rubber Soap",
+      "id": 10
+    },
+    {
+      "name": "Practical Frozen Towels",
+      "id": 11
+    },
+    {
+      "name": "Intelligent Plastic Table",
+      "id": 12
+    },
+    {
+      "name": "Intelligent Concrete Keyboard",
+      "id": 13
+    },
+    {
+      "name": "Refined Cotton Table",
+      "id": 14
+    },
+    {
+      "name": "Practical Soft Bacon",
+      "id": 15
+    },
+    {
+      "name": "Gorgeous Frozen Table",
+      "id": 16
+    },
+    {
+      "name": "Recycled Cotton Computer",
+      "id": 17
+    },
+    {
+      "name": "Luxurious Wooden Cheese",
+      "id": 18
+    }
+  ],
+>>>>>>> Stashed changes
   "insertionOrders": [],
   "lineItems": []
 }
